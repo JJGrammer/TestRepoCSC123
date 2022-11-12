@@ -1,5 +1,4 @@
 //Johann Jaramillo(jjaramillo26@toromail.csudh.edu)
-
 import java.util.Scanner;
 
 public class Main {
@@ -12,10 +11,11 @@ public class Main {
 		String fName,lName,SSN;
 		//arguments for checking and credit accounts
 		int overdraftLim,creditLim;
-		while (sentinel !=8) {
+		
+		while (sentinel !=-1) {
 			
-			System.out.println("1 - Open Checking\n2 - Open Saving\n3 - Open Credit\n4 - List Accounts\n5 - Deposit Funds\n6 -"
-					+ " Withdraw Funds\n7 - Close an Account\n8 - Exit\n\nPlease enter your choice: ");
+			System.out.println("1 - Open Checking\n2 - Open Saving\n3 - Open Credit\n4 - List Accounts\n5 - Account Statement\n6 - Deposit Funds\n7 -"
+					+ " Withdraw Funds\n8 - Close an Account\n9 - Exit\n\nPlease enter your choice: ");
 			sentinel = scan.nextInt();
 			
 			
@@ -53,6 +53,17 @@ public class Main {
 				Bank.listAccounts();
 				break;
 			case 5:
+				System.out.println("Enter account number: ");
+				tempAccountNum=scan.nextInt();
+				
+				if(Bank.lookup(tempAccountNum)!=null) {
+					Bank.lookup(tempAccountNum).printStatement();
+				}
+				else {System.out.println("Account not found."); }
+				break;
+				
+				
+			case 6:
 				//deposit money into account.
 				System.out.println("Enter account number: ");
 				 tempAccountNum=scan.nextInt();
@@ -73,7 +84,7 @@ public class Main {
 				else { System.out.println("Account not found.");}
 				break;
 				
-			case 6:
+			case 7:
 				//withdrawing money, with similar principles to case 5
 				System.out.println("Enter account number: ");
 				tempAccountNum=scan.nextInt();
@@ -91,25 +102,24 @@ public class Main {
 				else { System.out.println("Account not found.");}
 				break;
 				
-			case 7:
+			case 8:
 				//close accounts, similar principles to 6&7
 				System.out.println("Enter the account number to close: ");
 				tempAccountNum=scan.nextInt();
 				
 				if(Bank.lookup(tempAccountNum)!=null) {
 					Bank.lookup(tempAccountNum).close();
+					//since a bank would not allow you to borrow money without a way to pay it back, i've locked off negative withdrawals
 					System.out.println("Account closed, current balance is "+Bank.lookup(tempAccountNum).getBalance()
-							+", deposits are no longer possible");
+							+", deposits and overdrafting withdrawals are no longer possible");
 				}
 				else{System.out.println("Account not found.");}	
 				break;
 				
-			case 8:
-				sentinel=8;
+			case 9:
+				sentinel=-1;
 				scan.close();
 				System.out.println("Exiting program..."); 
-	
-	
 			
 			}
 		}	

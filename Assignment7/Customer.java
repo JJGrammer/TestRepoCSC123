@@ -1,5 +1,4 @@
-//Johann Jaramillo(jjaramillo26@toromail.csudh.edu)
-
+//Johann Jaramillo (jjaramillo26@toromail.csudh.edu)
 
 public class Customer {
 	private String firstName="",lastName="",ssn="";

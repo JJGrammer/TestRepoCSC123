@@ -1,5 +1,4 @@
-//Johann Jaramillo(jjaramillo26@toromail.csudh.edu)
-
+//Johann Jaramillo (jjaramillo26@toromail.csudh.edu)
 import java.util.ArrayList;
 public class Bank {
 		
